@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: arial;
+    }
+    .center {
+      display: flex;
+      padding: 10px;
+      margin-left: 140px;
+      gap: 20px;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    button{
+      font-size: 20px;
+      padding: 5px;
+      width: 100px;
+      background-color: blueviolet;
+      cursor: pointer;
+    }
+    button:hover{
+      background-color: aqua;
+    }
+    input{
+      margin-top: -10px;
+      padding: 10px;
+      width: 200px;
+    }
+  </style>
+  <body>
+    <h2>Từ cần đoán là</h2>
+    <h2 id="name"></h2>
+    <div class="center">
+      <input id="number" type="text" />
+      <span>So lan doan la </span>
+      <span id="count"></span>
+    </div>
+    <button onclick="guest()">Done!</button>
+    <script>
+      let arr = ["duy", "an", "thanh", "hoang", "hoa", "nam"];
+      let check = Math.floor(Math.random() * arr.length);
+      let word = arr[check];
+      let counts = 3;
+      let index = "";
+      for (let i = 0; i < word.length; i++) {
+        index += "*";
+      }
+      function showNet() {
+        document.getElementById("name").innerText = index;
+      }
+      showNet();
+
+      function countNe() {
+        document.getElementById("count").innerText = counts;
+      }
+      countNe();
+
+      function guest() {
+        let number = document.getElementById("number").value;
+        if(number==""){
+          alert("Không thể để trống");
+          return;
+        }
+        if (number == word) {
+          alert("WIN");
+          location.reload();
+          return;
+        } else {
+          alert("Sai")
+          counts--;
+          countNe();
+          if (counts == 0) {
+            alert("Thua");
+            location.reload();
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
